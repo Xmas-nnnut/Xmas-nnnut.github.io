@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Nacos 本地单机版部署(Mac M1)</title>
+    <link href="/2023/07/23/Nacos-%E6%9C%AC%E5%9C%B0%E5%8D%95%E6%9C%BA%E7%89%88%E9%83%A8%E7%BD%B2-Mac-M1/"/>
+    <url>/2023/07/23/Nacos-%E6%9C%AC%E5%9C%B0%E5%8D%95%E6%9C%BA%E7%89%88%E9%83%A8%E7%BD%B2-Mac-M1/</url>
+    
+    <content type="html"><![CDATA[<p>一.下载Nacos-server包，最新包2.2.3<br>可以在 github 上 Nacos Release 版本列表中下载最新的稳定版本。地址：<br><a href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a><br>请务必下载最新版，2.1.1以下版本会报错：</p><pre><code class="hljs">    WARN Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &#39;serviceOperatorV2Impl&#39; defined in URL ...</code></pre><p>二.启动之前配置<br>1.解压nacos-server-2.1.0.zip文件</p><p>2.nacos链接数据库<br>创建数据库：CREATE DATABASE nacos<br>执行nacos中数据库文件：mysql-schema.sql</p><p>3.配置application.properties文件<br>打开这些配置，然后正确配置链接数据库</p><pre><code class="hljs">    #*************** Config Module Related Configurations ***************#    ### If use MySQL as datasource:    ### Deprecated configuration property, it is recommended to use `spring.sql.init.platform` replaced.    spring.datasource.platform=mysql    spring.sql.init.platform=mysql    ### Count of DB:    db.num=1    ### Connect URL of DB:    db.url.0=jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useUnicode=true&amp;useSSL=false&amp;serverTimezone=UTC    db.user.0=nacos    db.password.0=nacos</code></pre><p>三.启动nacos服务</p><pre><code class="hljs">    cd nacos/bin    sh startup.sh -m standalone #standalone 代表着单机模式运行，非集群模式</code></pre><p>那如何看 Nacos 日志，从上面可见日志输出在 nacos&#x2F;logs 目录，查看 start.out 日志文件</p><p>访问：<a href="http://localhost:8848/nacos/index.html">http://localhost:8848/nacos/index.html</a>…<br>用户名：nacos<br>密码：nacos</p><p>关闭命令：</p><pre><code class="hljs">    sh shutdown.sh</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Mac OS M1 环境 项目因netty.dns启动失败</title>
     <link href="/2023/07/21/Mac-OS-M1-%E7%8E%AF%E5%A2%83-%E9%A1%B9%E7%9B%AE%E5%9B%A0netty-dns%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/"/>
     <url>/2023/07/21/Mac-OS-M1-%E7%8E%AF%E5%A2%83-%E9%A1%B9%E7%9B%AE%E5%9B%A0netty-dns%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/</url>
