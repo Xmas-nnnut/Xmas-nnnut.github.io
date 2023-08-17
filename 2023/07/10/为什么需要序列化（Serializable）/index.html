@@ -16,21 +16,21 @@
   <meta name="author" content="Xmas-nnnut">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="最近在学习springmvc+mybatis项目时，发现老师在实体类中引用了serializable这个接口 百度上是这么讲的Serializable接口是启用其序列化功能的接口。实现java.io.Serializable 接口的类是可序列化的。没有实现此接口的类将不能使它们的任意状态被序列化或逆序列化。 这个介绍非常的不接地气，于是我又去看了几篇博客，有一个小姐姐的博客引起了我的注意，她是这样">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://xmas-nnnut.github.io/2023/06/27/hello-world/">
+<meta property="og:title" content="为什么需要序列化（Serializable）">
+<meta property="og:url" content="https://xmas-nnnut.github.io/2023/07/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88Serializable%EF%BC%89/">
 <meta property="og:site_name" content="Xmas-nnnut&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="最近在学习springmvc+mybatis项目时，发现老师在实体类中引用了serializable这个接口 百度上是这么讲的Serializable接口是启用其序列化功能的接口。实现java.io.Serializable 接口的类是可序列化的。没有实现此接口的类将不能使它们的任意状态被序列化或逆序列化。 这个介绍非常的不接地气，于是我又去看了几篇博客，有一个小姐姐的博客引起了我的注意，她是这样">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-27T11:55:40.879Z">
-<meta property="article:modified_time" content="2023-07-23T05:18:19.916Z">
+<meta property="article:published_time" content="2023-07-10T10:23:18.000Z">
+<meta property="article:modified_time" content="2023-08-17T10:25:31.602Z">
 <meta property="article:author" content="Xmas-nnnut">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - Xmas-nnnut&#39;s Blog</title>
+  <title>为什么需要序列化（Serializable） - Xmas-nnnut&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="为什么需要序列化（Serializable）"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-27 19:55" pubdate>
-          2023年6月27日 晚上
+        <time datetime="2023-07-10 18:23" pubdate>
+          2023年7月10日 晚上
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          393 字
+          1.3k 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          4 分钟
+          11 分钟
         
       </span>
     
@@ -268,25 +268,20 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">为什么需要序列化（Serializable）</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="生成提交"><a href="#生成提交" class="headerlink" title="生成提交"></a>生成提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate --deploy<br></code></pre></td></tr></table></figure>
+                <p>最近在学习springmvc+mybatis项目时，发现老师在实体类中引用了serializable这个接口</p>
+<h4 id="百度上是这么讲的"><a href="#百度上是这么讲的" class="headerlink" title="百度上是这么讲的"></a>百度上是这么讲的</h4><p>Serializable接口是启用其序列化功能的接口。实现java.io.Serializable 接口的类是可序列化的。没有实现此接口的类将不能使它们的任意状态被序列化或逆序列化。</p>
+<p>这个介绍非常的不接地气，于是我又去看了几篇博客，有一个小姐姐的博客引起了我的注意，她是这样理解的：<br>序列化的过程，就是一个“freeze”的过程，它将一个对象freeze（冷冻）住，然后进行存储，等到再次需要的时候，再将这个对象de-freeze就可以立即使用。<br>我们以为的没有进行序列化，其实是在声明的各个不同变量的时候，由具体的数据类型帮助我们实现了序列化操作。<br>如果有人打开过Serializable接口的源码，就会发现，这个接口其实是个空接口，那么这个序列化操作，到底是由谁去实现了呢？其实，看一下接口的注释说明就知道，当我们让实体类实现Serializable接口时，其实是在告诉JVM此类可被序列化，可被默认的序列化机制序列化。</p>
+<h2 id="为什么需要序列化"><a href="#为什么需要序列化" class="headerlink" title="为什么需要序列化"></a>为什么需要序列化</h2><ul>
+<li>1，存储对象在存储介质中，以便在下次使用的时候，可以很快捷的重建一个副本。也就是When the resulting series of bits is reread according to the serialization format, it can be used to create a semantically identical clone of the original object.<br>问题：我没有实现序列化的时候，我一样可以存入到我的sqlserver或者MySQL、Oracle数据库中啊，为什么一定要序列化才能存储呢？？？？</li>
+<li>2，便于数据传输，尤其是在远程调用的时候！<br>其实说了这么多，想表达的意思就是：Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。</li>
+</ul>
+<p>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。<br>serializable接口就是Java提供用来进行高效率的异地共享实例对象的机制，实现这个接口即可。</p>
+<p>转载<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangenxian/p/11003221.html">https://www.cnblogs.com/wangenxian/p/11003221.html</a></p>
 
                 
               </div>
@@ -294,6 +289,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -304,8 +320,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>https://xmas-nnnut.github.io/2023/06/27/hello-world/</div>
+      <div>为什么需要序列化（Serializable）</div>
+      <div>https://xmas-nnnut.github.io/2023/07/10/为什么需要序列化（Serializable）/</div>
     </div>
     <div class="license-meta">
       
@@ -317,7 +333,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年6月27日</div>
+          <div>2023年7月10日</div>
         </div>
       
       
@@ -349,15 +365,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88Serializable%EF%BC%89/" title="为什么需要序列化（Serializable）">
+                      <a href="/2023/07/11/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/" title="idea插件推荐Generate All Getter And Setter">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">为什么需要序列化（Serializable）</span>
+                        <span class="hidden-mobile">idea插件推荐Generate All Getter And Setter</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/06/27/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
