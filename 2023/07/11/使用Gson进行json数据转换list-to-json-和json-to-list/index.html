@@ -16,22 +16,21 @@
   <meta name="author" content="Xmas-nnnut">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OpenAPI Typescript CodegenNode.js库，该库基于OpenAPI规范生成Typescript客户端。https:&#x2F;&#x2F;github.com&#x2F;ferdikoomen&#x2F;openapi-typescript-codegen安装： 1npm install openapi-typescript-codegen --save-dev  例如通过请求工具类 Axios： 1opena">
+    <meta name="description" content="经过比较，gson和其他现有java json类库最大的不同时gson需要序列化得实体类不需要使用annotation来标识需要序列化得字段，同时gson又可以通过使用annotation来灵活配置需要序列化的字段。下面是一个简单的例子： 123456789101112131415161718192021222324252627282930313233343536373839public clas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenAPI 自动生成接口请求代码">
-<meta property="og:url" content="https://xmas-nnnut.github.io/2023/08/04/OpenAPI-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E4%BB%A3%E7%A0%81/">
+<meta property="og:title" content="(转载)使用Gson进行json数据转换list to json 和json to list">
+<meta property="og:url" content="https://xmas-nnnut.github.io/2023/07/11/%E4%BD%BF%E7%94%A8Gson%E8%BF%9B%E8%A1%8Cjson%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2list-to-json-%E5%92%8Cjson-to-list/">
 <meta property="og:site_name" content="Xmas-nnnut&#39;s Blog">
-<meta property="og:description" content="OpenAPI Typescript CodegenNode.js库，该库基于OpenAPI规范生成Typescript客户端。https:&#x2F;&#x2F;github.com&#x2F;ferdikoomen&#x2F;openapi-typescript-codegen安装： 1npm install openapi-typescript-codegen --save-dev  例如通过请求工具类 Axios： 1opena">
+<meta property="og:description" content="经过比较，gson和其他现有java json类库最大的不同时gson需要序列化得实体类不需要使用annotation来标识需要序列化得字段，同时gson又可以通过使用annotation来灵活配置需要序列化的字段。下面是一个简单的例子： 123456789101112131415161718192021222324252627282930313233343536373839public clas">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-04T08:52:45.000Z">
-<meta property="article:modified_time" content="2023-08-19T03:38:22.796Z">
+<meta property="article:published_time" content="2023-07-11T03:30:40.000Z">
+<meta property="article:modified_time" content="2023-08-19T03:32:47.476Z">
 <meta property="article:author" content="Xmas-nnnut">
-<meta property="article:tag" content="typescript">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>OpenAPI 自动生成接口请求代码 - Xmas-nnnut&#39;s Blog</title>
+  <title>(转载)使用Gson进行json数据转换list to json 和json to list - Xmas-nnnut&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="OpenAPI 自动生成接口请求代码"></span>
+            <span id="subtitle" data-typed-text="(转载)使用Gson进行json数据转换list to json 和json to list"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-04 16:52" pubdate>
-          2023年8月4日 下午
+        <time datetime="2023-07-11 11:30" pubdate>
+          2023年7月11日 中午
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.1k 字
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          13 分钟
+          18 分钟
         
       </span>
     
@@ -269,26 +268,27 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">OpenAPI 自动生成接口请求代码</h1>
+            <h1 style="display: none">(转载)使用Gson进行json数据转换list to json 和json to list</h1>
             
             
               <div class="markdown-body">
                 
-                <p>OpenAPI Typescript Codegen<br>Node.js库，该库基于OpenAPI规范生成Typescript客户端。<br><a target="_blank" rel="noopener" href="https://github.com/ferdikoomen/openapi-typescript-codegen">https://github.com/ferdikoomen/openapi-typescript-codegen</a><br>安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install openapi-typescript-codegen --save-dev<br></code></pre></td></tr></table></figure>
+                <p>经过比较，gson和其他现有java json类库最大的不同时gson需要序列化得实体类不需要使用annotation来标识需要序列化得字段，<br>同时gson又可以通过使用annotation来灵活配置需要序列化的字段。<br>下面是一个简单的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;  <br>  <br>    <span class="hljs-keyword">private</span> String name;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;  <br>  <br>    <span class="hljs-comment">/** </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the name </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> name;  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/** </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> name the name to set </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.name = name;  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/** </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the age </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> age;  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/** </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> age the age to set </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.age = age;  <br>    &#125;  <br>      <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span>  <br>    &#123;  <br>        <span class="hljs-keyword">return</span> name + <span class="hljs-string">&quot;:&quot;</span> +age;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
 
-<p>例如通过请求工具类 Axios：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openapi --input (这里是你的后端接口文档地址) --output ./generated --client axios<br></code></pre></td></tr></table></figure>
+<p>实体很简单，两个字段，当然实体中的字段也可以是List或者Set类型的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-type">Gson</span> <span class="hljs-variable">gson</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Gson</span>();  <br>List&lt;Person&gt; persons = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Person&gt;();  <br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;  <br>     <span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();  <br>     p.setName(<span class="hljs-string">&quot;name&quot;</span> + i);  <br>     p.setAge(i * <span class="hljs-number">5</span>);  <br>     persons.add(p);  <br>&#125;  <br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> gson.toJson(persons);  <br></code></pre></td></tr></table></figure>
 
-<p>详细用法建议去查看readme</p>
-<p>如果想要自定义请求参数，怎么办？<br>1）使用代码生成器提供的全局参数修改对象：<br>在&#x2F;generated&#x2F;core&#x2F;OpenAPI.ts 可以修改请求地址</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">export const OpenAPI: OpenAPIConfig = &#123;<br>    BASE: &#x27;http://localhost:8101&#x27;,<br>    VERSION: &#x27;1.0&#x27;,<br>    WITH_CREDENTIALS: false,<br>    CREDENTIALS: &#x27;include&#x27;,<br>    TOKEN: undefined,<br>    USERNAME: undefined,<br>    PASSWORD: undefined,<br>    HEADERS: undefined,<br>    ENCODE_PATH: undefined,<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>上面的代码重点是Gson对象，它提供了toJason()方法将对象转换成Json字符串，上面代码的str对象值为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Json"><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name0&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">0</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">5</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name2&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">10</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name3&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">15</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name4&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">20</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name5&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">25</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name6&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">30</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name7&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">35</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name8&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">40</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name9&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">45</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span> <br></code></pre></td></tr></table></figure>
 
-<p>2）直接定义 axios 请求库的全局参数，比如全局请求响应拦截器<br>文档：<a target="_blank" rel="noopener" href="https://axios-http.com/docs/interceptors">https://axios-http.com/docs/interceptors</a><br>示例代码：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs text">// Add a request interceptor<br>import axios from &quot;axios&quot;;<br>axios.interceptors.request.use(<br>  function (config) &#123;<br>    // Do something before request is sent<br>    return config;<br>  &#125;,<br>  function (error) &#123;<br>    // Do something with request error<br>    return Promise.reject(error);<br>  &#125;<br>);<br>// Add a response interceptor<br>axios.interceptors.response.use(<br>  function (response) &#123;<br>    console.log(&quot;响应&quot;, response);<br>    // Any status code that lie within the range of 2xx cause this function to trigger<br>    // Do something with response data<br>    return response;<br>  &#125;,<br>  function (error) &#123;<br>    // Any status codes that falls outside the range of 2xx cause this function to trigger<br>    // Do something with response error<br>    return Promise.reject(error);<br>  &#125;<br>);<br></code></pre></td></tr></table></figure>
+<p>很标准的json数据，很简单吧，呵呵。<br>下面来看看gson的反序列化，Gson提供了fromJson()方法来实现从Json相关对象到java实体的方法。<br>在日常应用中，我们一般都会碰到两种情况，转成单一实体对象和转换成对象列表或者其他结构。<br>先来看第一种：<br>比如json字符串为：[{“name”:”name0”,”age”:0}]<br>代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-type">Person</span> <span class="hljs-variable">person</span> <span class="hljs-operator">=</span> gson.fromJson(str, Person.class);  <br></code></pre></td></tr></table></figure>
 
-<p>我放在了&#x2F;src&#x2F;plugins&#x2F;axios中<br>接着在main.ts中引入一下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">import &quot;@/plugins/axios&quot;;<br></code></pre></td></tr></table></figure>
+<p>提供两个参数，分别是json字符串以及需要转换对象的类型。<br>第二种，转换成列表类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Java">List&lt;Person&gt; ps = gson.fromJson(str, <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeToken</span>&lt;List&lt;Person&gt;&gt;()&#123;&#125;.getType());  <br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; ps.size() ; i++)  <br>&#123;  <br>     <span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> ps.get(i);  <br>     System.out.println(p.toString());  <br>&#125;  <br></code></pre></td></tr></table></figure>
+
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/god2030/article/details/51140450">https://blog.csdn.net/god2030/article/details/51140450</a></p>
 
                 
               </div>
@@ -307,7 +307,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -319,13 +319,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/typescript/">#typescript</a>
-      
-    </div>
-  
 </div>
 
 
@@ -334,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>OpenAPI 自动生成接口请求代码</div>
-      <div>https://xmas-nnnut.github.io/2023/08/04/OpenAPI-自动生成接口请求代码/</div>
+      <div>(转载)使用Gson进行json数据转换list to json 和json to list</div>
+      <div>https://xmas-nnnut.github.io/2023/07/11/使用Gson进行json数据转换list-to-json-和json-to-list/</div>
     </div>
     <div class="license-meta">
       
@@ -347,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月4日</div>
+          <div>2023年7月11日</div>
         </div>
       
       
@@ -379,12 +372,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/07/11/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/" title="idea插件推荐Generate All Getter And Setter">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">idea插件推荐Generate All Getter And Setter</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/24/Vscode%E5%BC%80%E5%8F%91ts%E9%A1%B9%E7%9B%AE-%E6%8A%A5%E9%94%99%EF%BC%9A%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A8%A1%E5%9D%97%E6%88%96%E5%85%B6%E7%9B%B8%E5%BA%94%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E/" title="Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明">
-                        <span class="hidden-mobile">Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明</span>
+                      <a href="/2023/07/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88Serializable%EF%BC%89/" title="为什么需要序列化（Serializable）">
+                        <span class="hidden-mobile">为什么需要序列化（Serializable）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
