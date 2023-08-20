@@ -186,6 +186,31 @@
   
   
   <entry>
+    <title>Mac OS M1 JDK8环境下启动慢</title>
+    <link href="/2023/06/28/Mac-OS-M1-JDK8%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%90%AF%E5%8A%A8%E6%85%A2/"/>
+    <url>/2023/06/28/Mac-OS-M1-JDK8%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%90%AF%E5%8A%A8%E6%85%A2/</url>
+    
+    <content type="html"><![CDATA[<p>同样的网络环境，同一个SpringBoot项目<br>在win10下启动，需要10秒左右<br>在macOS下启动，竟然需要23多秒<br>换成JDK17后也快了不少，JDK8也是下载ARM版本的</p><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul><li>修改&#x2F;etc&#x2F;hosts文件</li></ul><p>打开终端输入hostname，查看你的mac的主机名称（xxxMacBook.local）<br>没修改前应该是这个样子</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">##<br># Host Database<br>#<br># localhost is used to configure the loopback interface<br># when the system is booting.  Do not change this entry.<br>##<br>127.0.0.1localhost<br>255.255.255.255broadcasthost<br>::1localhost<br></code></pre></td></tr></table></figure><p>把它改成这个样子</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">##<br># Host Database<br>#<br># localhost is used to configure the loopback interface<br># when the system is booting.  Do not change this entry.<br>##<br>127.0.0.1localhost xxxMacBook.local<br>255.255.255.255broadcasthost<br>::1localhost xxxMacBook.local <br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mac</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2023/06/27/hello-world/"/>
     <url>/2023/06/27/hello-world/</url>
