@@ -104,6 +104,25 @@
   
   
   <entry>
+    <title>Lombok Builder 注解</title>
+    <link href="/2023/07/12/Lombok-Builder-%E6%B3%A8%E8%A7%A3/"/>
+    <url>/2023/07/12/Lombok-Builder-%E6%B3%A8%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<p>以前使用 new 对象后，再逐行执行 set 方法的方式来给对象赋值的。<br>还有另外一种可能更方便的方式 builder。<br>1）实体类加上 @Builder 等注解：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Builder</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExecuteCodeRequest</span> &#123;<br>    <span class="hljs-keyword">private</span> String code;<br>    <span class="hljs-keyword">private</span> String language;<br></code></pre></td></tr></table></figure><p>2）可以使用链式的方式更方便地给对象赋值：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-type">ExecuteCodeRequest</span> <span class="hljs-variable">executeCodeRequest</span> <span class="hljs-operator">=</span> ExecuteCodeRequest.builder()<br>    .code(code)<br>    .language(language)<br>    .inputList(inputList)<br>    .build();<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>idea插件推荐Generate All Getter And Setter</title>
     <link href="/2023/07/11/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/"/>
     <url>/2023/07/11/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/</url>

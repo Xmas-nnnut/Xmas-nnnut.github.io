@@ -16,22 +16,21 @@
   <meta name="author" content="Xmas-nnnut">
   <meta name="keywords" content="">
   
-    <meta name="description" content="使用类似 .var 的后缀模板生成 POJO 的所有 getter 和 setter 方法。https:&#x2F;&#x2F;plugins.jetbrains.com&#x2F;plugin&#x2F;18969-generate-all-getter-and-setter  Usage使用 .allget 生成所有 getter 方法。  allget使用 .allset 生成所有不带默认值的 setter 方法。  allset">
+    <meta name="description" content="以前使用 new 对象后，再逐行执行 set 方法的方式来给对象赋值的。还有另外一种可能更方便的方式 builder。1）实体类加上 @Builder 等注解： 1234567@Data@Builder@NoArgsConstructor@AllArgsConstructorpublic class ExecuteCodeRequest &amp;#123;    private String code;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="idea插件推荐Generate All Getter And Setter">
-<meta property="og:url" content="https://xmas-nnnut.github.io/2023/07/11/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/">
+<meta property="og:title" content="Lombok Builder 注解">
+<meta property="og:url" content="https://xmas-nnnut.github.io/2023/07/12/Lombok-Builder-%E6%B3%A8%E8%A7%A3/">
 <meta property="og:site_name" content="Xmas-nnnut&#39;s Blog">
-<meta property="og:description" content="使用类似 .var 的后缀模板生成 POJO 的所有 getter 和 setter 方法。https:&#x2F;&#x2F;plugins.jetbrains.com&#x2F;plugin&#x2F;18969-generate-all-getter-and-setter  Usage使用 .allget 生成所有 getter 方法。  allget使用 .allset 生成所有不带默认值的 setter 方法。  allset">
+<meta property="og:description" content="以前使用 new 对象后，再逐行执行 set 方法的方式来给对象赋值的。还有另外一种可能更方便的方式 builder。1）实体类加上 @Builder 等注解： 1234567@Data@Builder@NoArgsConstructor@AllArgsConstructorpublic class ExecuteCodeRequest &amp;#123;    private String code;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-11T10:25:20.000Z">
-<meta property="article:modified_time" content="2023-08-17T10:26:58.327Z">
+<meta property="article:published_time" content="2023-07-12T03:44:52.000Z">
+<meta property="article:modified_time" content="2023-08-20T03:45:39.664Z">
 <meta property="article:author" content="Xmas-nnnut">
-<meta property="article:tag" content="idea">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>idea插件推荐Generate All Getter And Setter - Xmas-nnnut&#39;s Blog</title>
+  <title>Lombok Builder 注解 - Xmas-nnnut&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="idea插件推荐Generate All Getter And Setter"></span>
+            <span id="subtitle" data-typed-text="Lombok Builder 注解"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-11 18:25" pubdate>
-          2023年7月11日 晚上
+        <time datetime="2023-07-12 11:44" pubdate>
+          2023年7月12日 中午
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          206 字
+          356 字
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -269,20 +268,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">idea插件推荐Generate All Getter And Setter</h1>
+            <h1 style="display: none">Lombok Builder 注解</h1>
             
             
               <div class="markdown-body">
                 
-                <p>使用类似 .var 的后缀模板生成 POJO 的所有 getter 和 setter 方法。<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/18969-generate-all-getter-and-setter">https://plugins.jetbrains.com/plugin/18969-generate-all-getter-and-setter</a></p>
-<ul>
-<li><p>Usage<br>使用 .allget 生成所有 getter 方法。</p>
-</li>
-<li><p>allget<br>使用 .allset 生成所有不带默认值的 setter 方法。</p>
-</li>
-<li><p>allset<br>使用 .allsetv 生成所有带默认值的 setter 方法。</p>
-</li>
-</ul>
+                <p>以前使用 new 对象后，再逐行执行 set 方法的方式来给对象赋值的。<br>还有另外一种可能更方便的方式 builder。<br>1）实体类加上 @Builder 等注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Builder</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExecuteCodeRequest</span> &#123;<br>    <span class="hljs-keyword">private</span> String code;<br>    <span class="hljs-keyword">private</span> String language;<br></code></pre></td></tr></table></figure>
+
+<p>2）可以使用链式的方式更方便地给对象赋值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-type">ExecuteCodeRequest</span> <span class="hljs-variable">executeCodeRequest</span> <span class="hljs-operator">=</span> ExecuteCodeRequest.builder()<br>    .code(code)<br>    .language(language)<br>    .inputList(inputList)<br>    .build();<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -313,13 +308,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/idea/">#idea</a>
-      
-    </div>
-  
 </div>
 
 
@@ -328,8 +316,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>idea插件推荐Generate All Getter And Setter</div>
-      <div>https://xmas-nnnut.github.io/2023/07/11/idea插件推荐Generate-All-Getter-And-Setter/</div>
+      <div>Lombok Builder 注解</div>
+      <div>https://xmas-nnnut.github.io/2023/07/12/Lombok-Builder-注解/</div>
     </div>
     <div class="license-meta">
       
@@ -341,7 +329,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月11日</div>
+          <div>2023年7月12日</div>
         </div>
       
       
@@ -373,9 +361,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/12/Lombok-Builder-%E6%B3%A8%E8%A7%A3/" title="Lombok Builder 注解">
+                      <a href="/2023/07/21/Mac-OS-M1-%E7%8E%AF%E5%A2%83-%E9%A1%B9%E7%9B%AE%E5%9B%A0netty-dns%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/" title="Mac OS M1 环境 项目因netty.dns启动失败">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Lombok Builder 注解</span>
+                        <span class="hidden-mobile">Mac OS M1 环境 项目因netty.dns启动失败</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -383,8 +371,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/11/%E4%BD%BF%E7%94%A8Gson%E8%BF%9B%E8%A1%8Cjson%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2list-to-json-%E5%92%8Cjson-to-list/" title="(转载)使用Gson进行json数据转换list to json 和json to list">
-                        <span class="hidden-mobile">(转载)使用Gson进行json数据转换list to json 和json to list</span>
+                      <a href="/2023/07/11/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/" title="idea插件推荐Generate All Getter And Setter">
+                        <span class="hidden-mobile">idea插件推荐Generate All Getter And Setter</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
