@@ -15,12 +15,14 @@
       
       <category>vue</category>
       
+      <category>typescript</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>typescript</tag>
+      <tag>前端</tag>
       
     </tags>
     
@@ -63,7 +65,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
@@ -71,6 +73,8 @@
     <tags>
       
       <tag>mac</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     
@@ -88,7 +92,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
@@ -96,6 +100,8 @@
     <tags>
       
       <tag>mac</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     
@@ -113,10 +119,16 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
     
   </entry>
   
@@ -132,7 +144,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
@@ -140,6 +152,8 @@
     <tags>
       
       <tag>idea</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     
@@ -157,10 +171,16 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
     
   </entry>
   
@@ -176,10 +196,16 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
     
   </entry>
   
@@ -195,7 +221,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>后端</category>
       
     </categories>
     
@@ -203,6 +229,35 @@
     <tags>
       
       <tag>mac</tag>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>密码加密开发流程</title>
+    <link href="/2023/06/25/%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    <url>/2023/06/25/%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h2><p>添加 spring boot 权限认证依赖</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Java">&lt;dependency&gt;<br>    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;<br>    &lt;version&gt;<span class="hljs-number">2.2</span><span class="hljs-number">.1</span>.RELEASE&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure><h2 id="2-添加过滤器"><a href="#2-添加过滤器" class="headerlink" title="2.添加过滤器"></a>2.添加过滤器</h2><p>在 config 包下新建 SecurityConfig 类<br>将以下代码添加到类中</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">WebSecurityConfigurerAdapter</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        http.authorizeRequests()<br>            .antMatchers(<span class="hljs-string">&quot;/**&quot;</span>)<br>            .permitAll()<br>            .anyRequest()<br>            .authenticated()<br>            .and()<br>            .csrf()<br>            .disable();<br>        &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> BCryptPasswordEncoder <span class="hljs-title function_">bCryptPasswordEncoder</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BCryptPasswordEncoder</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="3-在注册接口中加上密码加密"><a href="#3-在注册接口中加上密码加密" class="headerlink" title="3.在注册接口中加上密码加密"></a>3.在注册接口中加上密码加密</h2><p>修改 UserController 中的代码，首先注入加密实例</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-meta">@Autowired</span><br>BCryptPasswordEncoder bCryptPasswordEncoder;<br></code></pre></td></tr></table></figure><p>然后在注册接口下增加密码进行加密代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-type">String</span> <span class="hljs-variable">encodePassword</span> <span class="hljs-operator">=</span> bCryptPasswordEncoder.encode(user.getUpassword());<br>user.setUpassword(encodePassword);<br></code></pre></td></tr></table></figure><h2 id="4-在登录时进行密码匹配"><a href="#4-在登录时进行密码匹配" class="headerlink" title="4.在登录时进行密码匹配"></a>4.在登录时进行密码匹配</h2><p>在登录接口下增加匹配代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-type">User</span> <span class="hljs-variable">userfromJdbc</span> <span class="hljs-operator">=</span> userService.loginService(user.getUname());<br><span class="hljs-comment">//匹配代码</span><br><span class="hljs-keyword">if</span>(!bCryptPasswordEncoder.matches(user.getUpassword(),userfromJdbc.getUpassword()))&#123;<br>    <span class="hljs-keyword">return</span> Result.failure(ResultCodeEnum.UNAUTHORIZED,<span class="hljs-string">&quot;用户名或者密码错误&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span>JWTUtils.getToken(userfromJdbc.getUaccount(),userfromJdbc.getUname());<br>    Map&lt;String,String&gt; userMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    userMap.put(<span class="hljs-string">&quot;userId&quot;</span>,userfromJdbc.getUaccount());<br>    userMap.put(<span class="hljs-string">&quot;userName&quot;</span>,userfromJdbc.getUname());<br>    userMap.put(<span class="hljs-string">&quot;token&quot;</span>,token);<br>    <span class="hljs-keyword">return</span> Result.success(userMap);<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>加密</tag>
       
     </tags>
     
