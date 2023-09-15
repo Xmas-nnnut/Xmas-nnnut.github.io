@@ -13,16 +13,16 @@
     
     <categories>
       
-      <category>vue</category>
-      
-      <category>typescript</category>
+      <category>前端</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>前端</tag>
+      <tag>typescript</tag>
+      
+      <tag>vue</tag>
       
     </tags>
     
@@ -40,7 +40,7 @@
     
     <categories>
       
-      <category>vue</category>
+      <category>前端</category>
       
     </categories>
     
@@ -48,6 +48,10 @@
     <tags>
       
       <tag>typescript</tag>
+      
+      <tag>vue</tag>
+      
+      <tag>Vscode</tag>
       
     </tags>
     
