@@ -16,24 +16,22 @@
   <meta name="author" content="Xmas-nnnut">
   <meta name="keywords" content="">
   
-    <meta name="description" content="报错：找不到模块或其相应的类型声明。（Vue 3 can not find module） 报错原因：typescript 只能理解 .ts 文件，无法理解 .vue文件 解决方法：在项目根目录下创建一个后缀为 vue.d.ts 的文件，并写入以下内容： 12345&#x2F;&#x2F; 以下两种方案二选一&#x2F;&#x2F; 方案一 declare module &quot;*.vue&quot; &amp;#123; import V">
+    <meta name="description" content="前端项目部署配置 Nginx 首先修改 baseURL  1234let requests &#x3D; axios.create(&amp;#123;    &#x2F;&#x2F;基础路径,发请求URL携带api    baseURL: &quot;&#x2F;api&quot;,&amp;#125;);  下面是 Nginx 常见的命令 123456789&#x2F;&#x2F; 编辑配置文件cd &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;confvim nginx.con">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明">
-<meta property="og:url" content="https://xmas-nnnut.github.io/2023/07/24/Vscode%E5%BC%80%E5%8F%91ts%E9%A1%B9%E7%9B%AE-%E6%8A%A5%E9%94%99%EF%BC%9A%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A8%A1%E5%9D%97%E6%88%96%E5%85%B6%E7%9B%B8%E5%BA%94%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E/">
+<meta property="og:title" content="密码加密开发流程">
+<meta property="og:url" content="https://xmas-nnnut.github.io/2023/07/31/Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
 <meta property="og:site_name" content="Xmas-nnnut&#39;s Blog">
-<meta property="og:description" content="报错：找不到模块或其相应的类型声明。（Vue 3 can not find module） 报错原因：typescript 只能理解 .ts 文件，无法理解 .vue文件 解决方法：在项目根目录下创建一个后缀为 vue.d.ts 的文件，并写入以下内容： 12345&#x2F;&#x2F; 以下两种方案二选一&#x2F;&#x2F; 方案一 declare module &quot;*.vue&quot; &amp;#123; import V">
+<meta property="og:description" content="前端项目部署配置 Nginx 首先修改 baseURL  1234let requests &#x3D; axios.create(&amp;#123;    &#x2F;&#x2F;基础路径,发请求URL携带api    baseURL: &quot;&#x2F;api&quot;,&amp;#125;);  下面是 Nginx 常见的命令 123456789&#x2F;&#x2F; 编辑配置文件cd &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;confvim nginx.con">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-24T14:04:34.000Z">
-<meta property="article:modified_time" content="2023-09-15T11:26:32.379Z">
+<meta property="article:published_time" content="2023-07-31T10:19:31.000Z">
+<meta property="article:modified_time" content="2023-09-15T11:24:25.110Z">
 <meta property="article:author" content="Xmas-nnnut">
-<meta property="article:tag" content="typescript">
-<meta property="article:tag" content="vue">
-<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="Nginx">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明 - Xmas-nnnut&#39;s Blog</title>
+  <title>密码加密开发流程 - Xmas-nnnut&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明"></span>
+            <span id="subtitle" data-typed-text="密码加密开发流程"></span>
           
         </div>
 
@@ -210,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-24 22:04" pubdate>
-          2023年7月24日 晚上
+        <time datetime="2023-07-31 18:19" pubdate>
+          2023年7月31日 晚上
         </time>
       </span>
     
@@ -222,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          568 字
+          2.8k 字
         
       </span>
     
@@ -233,7 +231,7 @@
         
         
         
-          5 分钟
+          24 分钟
         
       </span>
     
@@ -271,18 +269,119 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明</h1>
+            <h1 style="display: none">密码加密开发流程</h1>
             
             
               <div class="markdown-body">
                 
-                <p>报错：找不到模块或其相应的类型声明。（Vue 3 can not find module）</p>
-<p>报错原因：typescript 只能理解 .ts 文件，无法理解 .vue文件</p>
-<p>解决方法：在项目根目录下创建一个后缀为 vue.d.ts 的文件，并写入以下内容：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">// 以下两种方案二选一<br>// 方案一 <br>declare module &quot;*.vue&quot; &#123; import Vue from &quot;vue&quot;; export default Vue; &#125; <br>// 方案二 <br>declare module &#x27;*.vue&#x27; &#123; import &#123; defineComponent &#125; from &#x27;vue&#x27;; const Component: ReturnType&lt;typeof defineComponent&gt;; export default Component &#125;<br></code></pre></td></tr></table></figure>
+                <h3 id="前端项目部署配置-Nginx"><a href="#前端项目部署配置-Nginx" class="headerlink" title="前端项目部署配置 Nginx"></a>前端项目部署配置 Nginx</h3><ol>
+<li>首先修改 baseURL</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> requests = axios.<span class="hljs-title function_">create</span>(&#123;<br>    <span class="hljs-comment">//基础路径,发请求URL携带api</span><br>    <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&quot;/api&quot;</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
 
-<p>然后在tsconfig.json中写入一下内容：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">&quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;src/**/*.d.ts&quot;, &quot;src/**/*.tsx&quot;, &quot;src/**/*.vue&quot;, &quot;vue.d.ts&quot;],<br></code></pre></td></tr></table></figure>
+<p>下面是 Nginx 常见的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">// 编辑配置文件<br>cd /usr/local/nginx/conf<br>vim nginx.conf<br>// 重启Nginx<br>cd /usr/local/nginx/sbin<br>./nginx -s reload<br>// 启动Nginx<br>cd /usr/local/nginx/sbin<br>./nginx<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>将以下内容拷贝进配置文件，注意看以下注释信息进行理解：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs conf">server &#123;<br>    listen 8081; # 前端项目的端口<br>    server_name localhost; # 服务器地址或绑定域名<br><br>    location / &#123;<br>        root /usr/share/nginx/html/dist; # dist包存放的路径<br>        index index.html index.htm;<br>    &#125;<br><br>    location /api/ &#123;<br>        proxy_pass http://ip:port/;<br>        # 当访问路径包含/api时，进行代理跳转。<br>        # 举个栗子：访问的是 http://ip:port/api/user/login<br>        # 则会被代理为 http://ip:port/user/login<br>    &#125;<br>    # 再举个栗子<br>    location /api/ &#123;<br>        proxy_pass http://ip:port;<br>        # 注意：比上面的少一个 &#x27;/&#x27;<br>        # 访问的是 http://ip:port/api/user/login<br>    &#125;<br>    # 再举个栗子<br>    location /api/ &#123;<br>        proxy_pass http://ip:port/test/;<br>        # 访问的是 http://ip:port/test/user/login<br>        # 如果最后少了 &#x27;/&#x27; ，就会代理到 http://ip:port/testuser/login<br>    &#125;<br>    error_page 500 502 503 504 /50x.html;<br>    location = /50x.html &#123;<br>        root html;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>总结：在 nginx 中配置 proxy_pass 时，如果在 proxy_pass 后面的 url 加 ‘&#x2F;‘ ，相当于是绝对根路径，则 nginx 不会把 location 中匹配的路径部分代理走;如果没有 ‘&#x2F;‘ ，则会把匹配的路径部分给代理走。<br>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wyl9527/article/details/89671506">https://blog.csdn.net/wyl9527/article/details/89671506</a></p>
+<h2 id="location-URI-结尾带不带-x2F"><a href="#location-URI-结尾带不带-x2F" class="headerlink" title="location URI 结尾带不带 &#x2F;"></a>location URI 结尾带不带 &#x2F;</h2><p>参考文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7044438248495513614">https://juejin.cn/post/7044438248495513614</a></p>
+<p>关于 URI 尾部的  &#x2F;  有三点也需要说明一下。第一点与 location 配置有关，其他两点无关。</p>
+<p>location 中的字符有没有  &#x2F;  都没有影响。也就是说  &#x2F;homepage&#x2F;  和  &#x2F;homepage  是一样的。<br>如果 URI 结构是  <a target="_blank" rel="noopener" href="https://domain.com/">https://domain.com/</a>  的形式，尾部有没有  &#x2F;  都不会造成重定向。因为浏览器在发起请求的时候，默认加上了  &#x2F; 。虽然很多浏览器在地址栏里也不会显示  &#x2F; 。<br>如果 URI 的结构是  <a target="_blank" rel="noopener" href="https://domain.com/homepage/">https://domain.com/homepage/</a> 。尾部如果缺少  &#x2F;  将导致重定向。因为根据约定，URL 尾部的  &#x2F;  表示目录，没有  &#x2F;  表示文件。所以访问  &#x2F;homepage&#x2F;  时，服务器会自动去该目录下找对应的默认文件。如果访问  &#x2F;homepage  的话，服务器会先去找  homepage  文件，找不到的话会将  homepage  当成目录，重定向到  &#x2F;homepage&#x2F; ，去该目录下找默认文件。</p>
+<h2 id="补充：location-指令说明"><a href="#补充：location-指令说明" class="headerlink" title="补充：location 指令说明"></a>补充：location 指令说明</h2><p>参考文章：<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/898207">https://developer.aliyun.com/article/898207</a></p>
+<p>我们看下 Location 的具体语法：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">location</span> <span class="hljs-title">[ = | ~ | ~* | ^~ ] uri</span> &#123; ... &#125;<br></code></pre></td></tr></table></figure>
+
+<p>重点看方括号中的 [ &#x3D; | ~ | <del>* | ^</del> ]，其中 | 分隔的内容表示你可能会用到的语法，其中：</p>
+<ul>
+<li>&#x3D; 表示精确匹配，比如：</li>
+</ul>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">location</span> <span class="hljs-operator">=</span> /test &#123;<br>    return <span class="hljs-number">200</span> <span class="hljs-string">&quot;hello&quot;</span><span class="hljs-comment">;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><p>&#x2F;test ok</p>
+</li>
+<li><p>&#x2F;test&#x2F; not ok</p>
+</li>
+<li><p>&#x2F;test2 not ok</p>
+</li>
+<li><p>&#x2F;test&#x2F;2 not ok</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>~ 表示区分大小写的正则匹配，比如：</li>
+</ul>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">location</span> <span class="hljs-title">~ ^/test</span>\$ &#123;<br>[ configuration ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><p>&#x2F;test ok</p>
+</li>
+<li><p>&#x2F;Test not ok</p>
+</li>
+<li><p>&#x2F;test&#x2F; not ok</p>
+</li>
+<li><p>&#x2F;test2 not ok</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>~_ 表示不区分大小写的正则匹配<br>location ~_ ^&#x2F;test$ {<br> [ configuration ]<br>}</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>&#x2F;test ok</p>
+</li>
+<li><p>&#x2F;Test ok</p>
+</li>
+<li><p>&#x2F;test&#x2F; not ok</p>
+</li>
+<li><p>&#x2F;test2 not ok</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>^~ 表示 uri 以某个字符串开头<br>location ^~ &#x2F;images&#x2F; {<br> [ configuration ]<br>}</li>
+</ul>
+<blockquote>
+<ul>
+<li>&#x2F;images&#x2F;1.gif ok</li>
+</ul>
+</blockquote>
+<p>而当你不使用这些语法的时候，只写 uri 的时候：<br>&#x2F; 表示通用匹配：<br>location &#x2F; {<br> [ configuration ]<br>}</p>
+<blockquote>
+<ul>
+<li>&#x2F;index.html ok</li>
+</ul>
+</blockquote>
+<p>location &#x2F;test {<br>[ configuration ]<br>}</p>
+<blockquote>
+<ul>
+<li><p>&#x2F;test ok</p>
+</li>
+<li><p>&#x2F;test2 ok</p>
+</li>
+<li><p>&#x2F;test&#x2F; ok</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="location-的定义分为两种"><a href="#location-的定义分为两种" class="headerlink" title="location 的定义分为两种"></a>location 的定义分为两种</h3><ul>
+<li>前缀字符串（prefix(前缀) string(字符串)）</li>
+<li>正则表达式（regular expression(表达)），具体为前面带 ~* 和 ~ 修饰符的<br>而匹配 location 的顺序为：</li>
+</ul>
+<ol>
+<li>检查使用前缀字符串的 locations，在使用前缀字符串的 locations 中选择最长匹配的，并将结果进行储存</li>
+<li>如果符合带有 &#x3D; 修饰符的 URI，则立刻停止匹配</li>
+<li>如果符合带有 ^~ 修饰符的 URI，则也立刻停止匹配。</li>
+<li>然后按照定义文件的顺序，检查正则表达式，匹配到就停止</li>
+<li>当正则表达式匹配不到的时候，使用之前储存的前缀字符串</li>
+</ol>
+<h3 id="再总结一下就是"><a href="#再总结一下就是" class="headerlink" title="再总结一下就是"></a>再总结一下就是</h3><p>在顺序上，前缀字符串顺序不重要，按照匹配长度来确定，正则表达式则按照定义顺序。<br>在优先级上，&#x3D; 修饰符最高，^~ 次之，再者是正则，最后是前缀字符串匹配。</p>
 
                 
               </div>
@@ -301,7 +400,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
   
   
 
@@ -316,11 +415,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/typescript/">#typescript</a>
-      
-        <a href="/tags/vue/">#vue</a>
-      
-        <a href="/tags/vscode/">#vscode</a>
+        <a href="/tags/Nginx/">#Nginx</a>
       
     </div>
   
@@ -332,8 +427,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明</div>
-      <div>https://xmas-nnnut.github.io/2023/07/24/Vscode开发ts项目-报错：找不到模块或其相应的类型声明/</div>
+      <div>密码加密开发流程</div>
+      <div>https://xmas-nnnut.github.io/2023/07/31/Nginx配置文件/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +440,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月24日</div>
+          <div>2023年7月31日</div>
         </div>
       
       
@@ -377,9 +472,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/31/Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="密码加密开发流程">
+                      <a href="/2023/08/04/OpenAPI-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E4%BB%A3%E7%A0%81/" title="OpenAPI 自动生成接口请求代码">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">密码加密开发流程</span>
+                        <span class="hidden-mobile">OpenAPI 自动生成接口请求代码</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -387,8 +482,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/23/Nacos-%E6%9C%AC%E5%9C%B0%E5%8D%95%E6%9C%BA%E7%89%88%E9%83%A8%E7%BD%B2-Mac-M1/" title="Nacos 本地单机版部署(Mac M1)">
-                        <span class="hidden-mobile">Nacos 本地单机版部署(Mac M1)</span>
+                      <a href="/2023/07/24/Vscode%E5%BC%80%E5%8F%91ts%E9%A1%B9%E7%9B%AE-%E6%8A%A5%E9%94%99%EF%BC%9A%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A8%A1%E5%9D%97%E6%88%96%E5%85%B6%E7%9B%B8%E5%BA%94%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E/" title="Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明">
+                        <span class="hidden-mobile">Vscode开发vue+ts项目 报错：找不到模块或其相应的类型声明</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
