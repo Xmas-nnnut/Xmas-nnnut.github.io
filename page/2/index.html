@@ -224,6 +224,67 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/07/22/Lombok-Builder-%E6%B3%A8%E8%A7%A3/" target="_self">
+          Lombok Builder 注解
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/07/22/Lombok-Builder-%E6%B3%A8%E8%A7%A3/" target="_self">
+        <div>
+          以前使用 new 对象后，再逐行执行 set 方法的方式来给对象赋值的。还有另外一种可能更方便的方式 builder。1）实体类加上 @Builder 等注解： 1234567@Data@Builder@NoArgsConstructor@AllArgsConstructorpublic class ExecuteCodeRequest &#123;    private String code;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-07-22 11:44" pubdate>
+              2023-07-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%90%8E%E7%AB%AF/" class="category-chain-item">后端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/07/21/idea%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90Generate-All-Getter-And-Setter/" target="_self">
           Idea 插件推荐 Generate All Getter And Setter
         </a>
@@ -533,69 +594,6 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/01/21/%E4%BD%BF%E7%94%A8Dockerfile%E6%9E%84%E5%BB%BAPython%E3%80%81Java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
-          使用Dockerfile构建Python、Java开发环境
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/21/%E4%BD%BF%E7%94%A8Dockerfile%E6%9E%84%E5%BB%BAPython%E3%80%81Java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
-        <div>
-          平时构建项目镜像用的是 openjdk:8-jdk-alpine，因为构建方便且用到 Java 环境。 现在的代码沙箱需要用到 Lo-runner ，需要 Java + python 环境。 因此用 ubuntu 作为基础镜像，安装 openjdk-8-jdk 和 python3 ，下面是Dockerfile文件内容： 123456789101112131415161718192021222324
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-01-21 18:25" pubdate>
-              2023-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">#Java</a>
-            
-              <a href="/tags/Python/">#Python</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
@@ -690,7 +688,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v1.hitokoto.cn/?c=a',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'hitokoto'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v1.hitokoto.cn/?c=a:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>
