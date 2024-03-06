@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/SilverWolf.png">
+  <link rel="icon" href="/img/SilverWolf.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xmas-nnnut">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="微软官方编辑器：https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;monaco-editor官方提供的整合教程：https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;monaco-editor&#x2F;blob&#x2F;main&#x2F;docs&#x2F;integrate-esm.md 1）安装编辑器1npm install monaco-editor  2）vue-cli 项目（webpack 项目）整合 mon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码编辑器实践">
+<meta property="og:url" content="https://xmas-nnnut.github.io/2023/11/15/%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8%E5%AE%9E%E8%B7%B5/">
+<meta property="og:site_name" content="Xmas-nnnut&#39;s Blog">
+<meta property="og:description" content="微软官方编辑器：https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;monaco-editor官方提供的整合教程：https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;monaco-editor&#x2F;blob&#x2F;main&#x2F;docs&#x2F;integrate-esm.md 1）安装编辑器1npm install monaco-editor  2）vue-cli 项目（webpack 项目）整合 mon">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-15T12:15:22.000Z">
+<meta property="article:modified_time" content="2024-03-06T02:48:49.189Z">
+<meta property="article:author" content="Xmas-nnnut">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码编辑器实践 - Xmas-nnnut&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xmas-nnnut.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Xmas-nnnut&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="代码编辑器实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-15 20:15" pubdate>
+          2023年11月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">代码编辑器实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>微软官方编辑器：<a target="_blank" rel="noopener" href="https://github.com/microsoft/monaco-editor">https://github.com/microsoft/monaco-editor</a><br>官方提供的整合教程：<a target="_blank" rel="noopener" href="https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md">https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md</a></p>
+<h2 id="1）安装编辑器"><a href="#1）安装编辑器" class="headerlink" title="1）安装编辑器"></a>1）安装编辑器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install monaco-editor<br></code></pre></td></tr></table></figure>
+
+<h2 id="2）vue-cli-项目（webpack-项目）整合-monaco-editor-编辑器-。"><a href="#2）vue-cli-项目（webpack-项目）整合-monaco-editor-编辑器-。" class="headerlink" title="2）vue-cli 项目（webpack 项目）整合 monaco-editor(编辑器)。"></a>2）vue-cli 项目（webpack 项目）整合 monaco-editor(编辑器)。</h2><p>先安装 monaco-editor(编辑器)-webpack-plugin（<a target="_blank" rel="noopener" href="https://github.com/microsoft/monaco-editor/blob/main/webpack-plugin/README.md%EF%BC%89%EF%BC%9A">https://github.com/microsoft/monaco-editor/blob/main/webpack-plugin/README.md）：</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install monaco-editor-webpack-plugin<br></code></pre></td></tr></table></figure>
+
+<h4 id="在-vue-config-js-中配置-webpack-插件："><a href="#在-vue-config-js-中配置-webpack-插件：" class="headerlink" title="在 vue.config.js 中配置 webpack 插件："></a>在 vue.config.js 中配置 webpack 插件：</h4><h4 id="全量加载："><a href="#全量加载：" class="headerlink" title="全量加载："></a>全量加载：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; defineConfig &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@vue/cli-service&quot;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">MonacoWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;monaco-editor-webpack-plugin&quot;</span>);<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">transpileDependencies</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-title function_">chainWebpack</span>(<span class="hljs-params">config</span>) &#123;<br>    config.<span class="hljs-title function_">plugin</span>(<span class="hljs-string">&quot;monaco&quot;</span>).<span class="hljs-title function_">use</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MonacoWebpackPlugin</span>());<br>  &#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="按需加载："><a href="#按需加载：" class="headerlink" title="按需加载："></a>按需加载：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MonacoWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;monaco-editor-webpack-plugin&#x27;</span>)<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">chainWebpack</span>: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>    config.<span class="hljs-title function_">plugin</span>(<span class="hljs-string">&#x27;monaco-editor&#x27;</span>).<span class="hljs-title function_">use</span>(<span class="hljs-title class_">MonacoWebpackPlugin</span>, [<br>      &#123;<br>        <span class="hljs-comment">// Languages are loaded on demand at runtime</span><br>        <span class="hljs-attr">languages</span>: [<span class="hljs-string">&#x27;json&#x27;</span>, <span class="hljs-string">&#x27;go&#x27;</span>, <span class="hljs-string">&#x27;css&#x27;</span>, <span class="hljs-string">&#x27;html&#x27;</span>, <span class="hljs-string">&#x27;java&#x27;</span>, <span class="hljs-string">&#x27;javascript&#x27;</span>, <span class="hljs-string">&#x27;less&#x27;</span>, <span class="hljs-string">&#x27;markdown&#x27;</span>, <span class="hljs-string">&#x27;mysql&#x27;</span>, <span class="hljs-string">&#x27;php&#x27;</span>, <span class="hljs-string">&#x27;python&#x27;</span>, <span class="hljs-string">&#x27;scss&#x27;</span>, <span class="hljs-string">&#x27;shell&#x27;</span>, <span class="hljs-string">&#x27;redis&#x27;</span>, <span class="hljs-string">&#x27;sql&#x27;</span>, <span class="hljs-string">&#x27;typescript&#x27;</span>, <span class="hljs-string">&#x27;xml&#x27;</span>], <span class="hljs-comment">// [&#x27;abap&#x27;, &#x27;apex&#x27;, &#x27;azcli&#x27;, &#x27;bat&#x27;, &#x27;cameligo&#x27;, &#x27;clojure&#x27;, &#x27;coffee&#x27;, &#x27;cpp&#x27;, &#x27;csharp&#x27;, &#x27;csp&#x27;, &#x27;css&#x27;, &#x27;dart&#x27;, &#x27;dockerfile&#x27;, &#x27;ecl&#x27;, &#x27;fsharp&#x27;, &#x27;go&#x27;, &#x27;graphql&#x27;, &#x27;handlebars&#x27;, &#x27;hcl&#x27;, &#x27;html&#x27;, &#x27;ini&#x27;, &#x27;java&#x27;, &#x27;javascript&#x27;, &#x27;json&#x27;, &#x27;julia&#x27;, &#x27;kotlin&#x27;, &#x27;less&#x27;, &#x27;lexon&#x27;, &#x27;lua&#x27;, &#x27;m3&#x27;, &#x27;markdown&#x27;, &#x27;mips&#x27;, &#x27;msdax&#x27;, &#x27;mysql&#x27;, &#x27;objective-c&#x27;, &#x27;pascal&#x27;, &#x27;pascaligo&#x27;, &#x27;perl&#x27;, &#x27;pgsql&#x27;, &#x27;php&#x27;, &#x27;postiats&#x27;, &#x27;powerquery&#x27;, &#x27;powershell&#x27;, &#x27;pug&#x27;, &#x27;python&#x27;, &#x27;r&#x27;, &#x27;razor&#x27;, &#x27;redis&#x27;, &#x27;redshift&#x27;, &#x27;restructuredtext&#x27;, &#x27;ruby&#x27;, &#x27;rust&#x27;, &#x27;sb&#x27;, &#x27;scala&#x27;, &#x27;scheme&#x27;, &#x27;scss&#x27;, &#x27;shell&#x27;, &#x27;solidity&#x27;, &#x27;sophia&#x27;, &#x27;sql&#x27;, &#x27;st&#x27;, &#x27;swift&#x27;, &#x27;systemverilog&#x27;, &#x27;tcl&#x27;, &#x27;twig&#x27;, &#x27;typescript&#x27;, &#x27;vb&#x27;, &#x27;xml&#x27;, &#x27;yaml&#x27;],</span><br>        <span class="hljs-attr">features</span>: [<span class="hljs-string">&#x27;format&#x27;</span>, <span class="hljs-string">&#x27;find&#x27;</span>, <span class="hljs-string">&#x27;contextmenu&#x27;</span>, <span class="hljs-string">&#x27;gotoError&#x27;</span>, <span class="hljs-string">&#x27;gotoLine&#x27;</span>, <span class="hljs-string">&#x27;gotoSymbol&#x27;</span>, <span class="hljs-string">&#x27;hover&#x27;</span> , <span class="hljs-string">&#x27;documentSymbols&#x27;</span>] <span class="hljs-comment">//[&#x27;accessibilityHelp&#x27;, &#x27;anchorSelect&#x27;, &#x27;bracketMatching&#x27;, &#x27;caretOperations&#x27;, &#x27;clipboard&#x27;, &#x27;codeAction&#x27;, &#x27;codelens&#x27;, &#x27;colorPicker&#x27;, &#x27;comment&#x27;, &#x27;contextmenu&#x27;, &#x27;coreCommands&#x27;, &#x27;cursorUndo&#x27;, &#x27;dnd&#x27;, &#x27;documentSymbols&#x27;, &#x27;find&#x27;, &#x27;folding&#x27;, &#x27;fontZoom&#x27;, &#x27;format&#x27;, &#x27;gotoError&#x27;, &#x27;gotoLine&#x27;, &#x27;gotoSymbol&#x27;, &#x27;hover&#x27;, &#x27;iPadShowKeyboard&#x27;, &#x27;inPlaceReplace&#x27;, &#x27;indentation&#x27;, &#x27;inlineHints&#x27;, &#x27;inspectTokens&#x27;, &#x27;linesOperations&#x27;, &#x27;linkedEditing&#x27;, &#x27;links&#x27;, &#x27;multicursor&#x27;, &#x27;parameterHints&#x27;, &#x27;quickCommand&#x27;, &#x27;quickHelp&#x27;, &#x27;quickOutline&#x27;, &#x27;referenceSearch&#x27;, &#x27;rename&#x27;, &#x27;smartSelect&#x27;, &#x27;snippets&#x27;, &#x27;suggest&#x27;, &#x27;toggleHighContrast&#x27;, &#x27;toggleTabFocusMode&#x27;, &#x27;transpose&#x27;, &#x27;unusualLineTerminators&#x27;, &#x27;viewportSemanticTokens&#x27;, &#x27;wordHighlighter&#x27;, &#x27;wordOperations&#x27;, &#x27;wordPartOperations&#x27;]</span><br>      &#125;<br>    ])<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="如何使用-Monaco-Editor-编辑器-？查看示例教程："><a href="#如何使用-Monaco-Editor-编辑器-？查看示例教程：" class="headerlink" title="如何使用 Monaco Editor(编辑器)？查看示例教程："></a>如何使用 Monaco Editor(编辑器)？查看示例教程：</h2><p><a target="_blank" rel="noopener" href="https://microsoft.github.io/monaco-editor/playground.html?source=v0.40.0#example-creating-the-editor-hello-world">https://microsoft.github.io/monaco-editor/playground.html?source=v0.40.0#example-creating-the-editor-hello-world</a><br>整合教程参考：<a target="_blank" rel="noopener" href="http://chart.zhenglinglu.cn/pages/2244bd/#%E5%9C%A8-vue-%E4%B8%AD%E4%BD%BF%E7%94%A8">http://chart.zhenglinglu.cn/pages/2244bd/#%E5%9C%A8-vue-%E4%B8%AD%E4%BD%BF%E7%94%A8</a></p>
+<h4 id="注意-，monaco-editor-编辑器-在读写值的时候，要使用-toRaw-编辑器实例）的语法来执行操作，否则会卡死。"><a href="#注意-，monaco-editor-编辑器-在读写值的时候，要使用-toRaw-编辑器实例）的语法来执行操作，否则会卡死。" class="headerlink" title="注意 ，monaco editor(编辑器) 在读写值的时候，要使用 toRaw(编辑器实例）的语法来执行操作，否则会卡死。"></a>注意 ，monaco editor(编辑器) 在读写值的时候，要使用 toRaw(编辑器实例）的语法来执行操作，否则会卡死。</h4><p>示例整合代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div id=&quot;code-editor&quot; ref=&quot;codeEditorRef&quot; style=&quot;min-height: 400px&quot; /&gt;<br>  &#123;&#123; value &#125;&#125;<br>  &lt;a-button @click=&quot;fillValue&quot;&gt;填充值&lt;/a-button&gt;<br>&lt;/template&gt;<br>&lt;script setup lang=&quot;ts&quot;&gt;<br>import * as monaco from &quot;monaco-editor&quot;;<br>import &#123; onMounted, ref, toRaw &#125; from &quot;vue&quot;;<br>const codeEditorRef = ref();<br>const codeEditor = ref();<br>const value = ref(&quot;hello world&quot;);<br>const fillValue = () =&gt; &#123;<br>  if (!codeEditor.value) &#123;<br>    return;<br>  &#125;<br>  // 改变值<br>  toRaw(codeEditor.value).setValue(&quot;新的值&quot;);<br>&#125;;<br>onMounted(() =&gt; &#123;<br>  if (!codeEditorRef.value) &#123;<br>    return;<br>  &#125;<br>  // Hover on each property to see its docs!<br>  codeEditor.value = monaco.editor.create(codeEditorRef.value, &#123;<br>    value: value.value,<br>    language: &quot;java&quot;,<br>    automaticLayout: true,<br>    colorDecorators: true,<br>    minimap: &#123;<br>      enabled: true,<br>    &#125;,<br>    readOnly: false,<br>    theme: &quot;vs-dark&quot;,<br>    // lineNumbers: &quot;off&quot;,<br>    // roundedSelection: false,<br>    // scrollBeyondLastLine: false,<br>  &#125;);<br>  // 编辑 监听内容变化<br>  codeEditor.value.onDidChangeModelContent(() =&gt; &#123;<br>    console.log(&quot;目前内容为：&quot;, toRaw(codeEditor.value).getValue());<br>  &#125;);<br>&#125;);<br>&lt;/script&gt;<br>&lt;style scoped&gt;&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="与-Md-编辑器一样，也要接受父组件的传值，把显示的输入交给父组件去控制，从而能够让父组件实时得到用户输入的代码："><a href="#与-Md-编辑器一样，也要接受父组件的传值，把显示的输入交给父组件去控制，从而能够让父组件实时得到用户输入的代码：" class="headerlink" title="与 Md 编辑器一样，也要接受父组件的传值，把显示的输入交给父组件去控制，从而能够让父组件实时得到用户输入的代码："></a>与 Md 编辑器一样，也要接受父组件的传值，把显示的输入交给父组件去控制，从而能够让父组件实时得到用户输入的代码：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义组件属性类型</span><br><span class="hljs-comment"> */</span><br>interface <span class="hljs-title class_">Props</span> &#123;<br>  <span class="hljs-attr">value</span>: string;<br>  <span class="hljs-attr">handleChange</span>: <span class="hljs-function">(<span class="hljs-params">v: string</span>) =&gt;</span> <span class="hljs-keyword">void</span>;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 给组件指定初始值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> props = <span class="hljs-title function_">withDefaults</span>(defineProps&lt;<span class="hljs-title class_">Props</span>&gt;(), &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;&quot;</span>,<br>  <span class="hljs-attr">handleChange</span>: <span class="hljs-function">(<span class="hljs-params">v: string</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v);<br>  &#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码编辑器实践</div>
+      <div>https://xmas-nnnut.github.io/2023/11/15/代码编辑器实践/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xmas-nnnut</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/02/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AE%9E%E6%88%98/" title="消息队列实战">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">消息队列实战</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/12/Markdown%20%E7%BC%96%E8%BE%91%E5%99%A8%E5%AE%9E%E8%B7%B5/" title="Markdown 编辑器实践">
+                        <span class="hidden-mobile">Markdown 编辑器实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+
+      <div id="sakana" style="position:fixed;right:0;bottom:0px;"></div>
+      <script async onload='initSakanaWidget({"character":"takina","enable":true,"enable_mobile":false,"size":200,"autoFit":false,"bottom":"0px","controls":true,"stroke":{"color":"#b4b4b4","width":10},"threshold":0.1,"rotate":0,"customCharacters":[]})' src="https://cdn.jsdelivr.net/npm/sakana-widget@2.3.0/lib/sakana.min.js"></script>
+      <script>
+      function log(msg) {
+        console.log("[hexo-sakana] " + msg);
+      }
+
+      function initSakanaWidget(config) {
+        if (
+          !config.enable_mobile &&
+          window.navigator.userAgent.match(
+            /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+          )
+        ) {
+          log(
+            '检测为移动端，且配置中未开启在移动端启用组件，hexo-sakana 已禁用'
+          );
+          return;
+        }
+        for (character of config.customCharacters) {
+          if (!["takina", "chisato"].includes(character.base)) {
+            log(`无效基础角色 ${character.base}，取消注册`);
+            continue;
+          }
+          if (character.name === "") {
+            log("名称为空，取消注册");
+            continue;
+          }
+          const originCharacter = SakanaWidget.getCharacter(character.base);
+          originCharacter.initialState = {
+            ...originCharacter.initialState,
+            ...character,
+          };
+          originCharacter.image = !character.image ? originCharacter.image : character.image
+          SakanaWidget.registerCharacter(character.name, originCharacter);
+          log(`注册自定义角色：${character.name}`)
+        }
+        new SakanaWidget({
+          character: config.character,
+          size: config.size,
+          autoFit: config.autoFit,
+          controls: config.controls,
+          stroke: config.stroke,
+          threshold: config.threshold,
+          rotate: config.rotate,
+        }).mount("#sakana");
+      }
+  </script>
+    </body>
+</html>
